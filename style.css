@@ -70,6 +70,77 @@ body {
     font-size: 17px;
 }
 
+.game_bg {
+    height: 618px;
+    width: 93%;
+    background-color: rgb(14, 23, 41);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    position: relative;
+}
+
+.game_grid {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    position: relative;
+}
+
+.game_sidebar_left {
+    width: 300px;
+    height: 618px;
+    background-color: rgb(51, 65, 85);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    top: 40px;
+    left: 24px;
+}
+
+.top_btn_grid {
+    width: 65%;
+    height: 50px;
+    background-color: rgb(15,23,42);
+    border-radius: 50px;
+    position: absolute;
+    left: 15%;
+    top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.manual_drop_btn, .auto_drop_btn {
+    width: 48%;
+    height: 35px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auto_drop_btn {
+    background-color: rgb(15,23,42);
+}
+
+.manual_drop_btn {
+    background-color: rgb(72,85,105);
+}
+.manual_drop_btn:hover, .auto_drop_btn:hover {
+    background-color: rgb(83, 97, 119)
+}
 
 @media (max-width: 768px) {
     .top_bar_grid {
