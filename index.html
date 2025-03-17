@@ -24,21 +24,29 @@
                 <div class="auto_drop_btn">Auto</div>
             </div>
             <div class="bet_amount">Bet Amount</div>
-            <div class="bet_input"><input type="number"><button class="bet-btn half">1/2</button><button class="bet-btn double">2x</button></div>
+            <div class="bet_input"><input type="number" value="10.00"><button class="bet-btn half">1/2</button><button class="bet-btn double">2x</button></div>            
             <div class="rows_amount">Rows</div>
-            <select class="rows-dropdown">
+            <select class="rows_dropdown">
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
-                <option value="12">12</option>
+                <option value="12" selected>12</option>
                 <option value="13">13</option>
                 <option value="14">14</option>
                 <option value="15">15</option>
                 <option value="16">16</option>
             </select>
+
+            <div class="auto_drop_interval">Auto Drop Interval (ms)</div>
+            <div class="auto_drop_interval_input"><input type="number" value="1000"></div> 
+            
             <div class="drop_ball_btn">Drop Ball</div>
+            <div class="plinko_grid"></div>
+            <div class="plinko_border_left"></div>
+            <div class="plinko_border_right"></div>
         </div>
+        <div class="multiplier-notification"></div>
     </div>
 </body>
 <script src="script.js"></script>
