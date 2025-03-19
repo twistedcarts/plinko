@@ -156,6 +156,7 @@ function drop_ball() {
         dx *= Math.pow(physics.friction, delta_time);
         x += dx * delta_time;
         y += dy * delta_time;
+        
         game.pegs.forEach(peg => {
             const distance = Math.sqrt((x - peg.x) ** 2 + (y - peg.y) ** 2);
             if (distance < physics.peg_radius + physics.ball_radius && last_collision !== peg) {
@@ -170,29 +171,17 @@ function drop_ball() {
             }
         });
 
-        game.borders.forEach(border => {
-            const distance = Math.sqrt((x - border.x) ** 2 + (y - border.y) ** 2);
-            if (distance < physics.border_radius + physics.ball_radius && last_collision !== border) {
-                const angle = Math.atan2(y - border.y, x - border.x);
-                const speed = Math.sqrt(dx * dx + dy * dy);
-                const bounce_speed = speed * physics.bounce;
-                const random_angle = angle + (Math.random() - 0.5) * 0.25;
-                dx = Math.cos(random_angle) * bounce_speed;
-                dy = Math.sin(random_angle) * bounce_speed;
-                last_collision = border;
-                setTimeout(() => last_collision = null, 100);
-            }
-        });
         const left_bound = plinko_border_left.offsetLeft + physics.border_radius;
         const right_bound = plinko_border_right.offsetLeft - physics.border_radius;
-        if (x < left_bound){ 
-            x = left_bound
+        if (x < left_bound) { 
+            x = left_bound;
             dx = Math.abs(dx) * physics.bounce;
-        };
-        if (x > right_bound){
-             x = right_bound
-             dx = -Math.abs(dx) * physics.bounce;
-            };
+        }
+        if (x > right_bound) {
+            x = right_bound;
+            dx = -Math.abs(dx) * physics.bounce;
+        }
+        
         if (y > plinko_grid.offsetHeight - physics.ball_radius) {
             const slot_width = 50;
             const total_width = game.multipliers.length * slot_width;
@@ -203,10 +192,20 @@ function drop_ball() {
                 game.money += game.price_per_ball * multiplier;
                 update_multiplier_display(multiplier);
                 update_money_display();
+                
+                // Make multiplier slot grow temporarily with smooth transition
+                const slot = document.querySelectorAll('.multiplier-slot')[slot_index];
+                slot.style.transition = 'transform 0.1s ease-in-out';
+                slot.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    slot.style.transform = 'scale(1)';
+                }, 100);
+                
+                ball.remove(); // Remove ball instantly upon hitting multiplier
             }
-            ball.remove();
             return;
         }
+        
         ball.style.left = `${x}px`;
         ball.style.top = `${y}px`;
         requestAnimationFrame(animate);
@@ -214,6 +213,8 @@ function drop_ball() {
 
     requestAnimationFrame(animate);
 }
+
+
 
 function update_money_display() {
     money_display.textContent = game.money.toFixed(2);
