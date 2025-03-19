@@ -193,7 +193,6 @@ function drop_ball() {
                 update_multiplier_display(multiplier);
                 update_money_display();
                 
-                // Make multiplier slot grow temporarily with smooth transition
                 const slot = document.querySelectorAll('.multiplier-slot')[slot_index];
                 slot.style.transition = 'transform 0.1s ease-in-out';
                 slot.style.transform = 'scale(1.3)';
@@ -201,7 +200,7 @@ function drop_ball() {
                     slot.style.transform = 'scale(1)';
                 }, 100);
                 
-                ball.remove(); // Remove ball instantly upon hitting multiplier
+                ball.remove();
             }
             return;
         }
